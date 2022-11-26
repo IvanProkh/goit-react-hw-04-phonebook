@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormContact, Label, Input, Error, Button } from './ContactForm.styled';
 
@@ -15,28 +15,24 @@ const nameId = nanoid();
 const contactId = nanoid();
 
 const ContactForm = ({ onSubmit }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [state] = useState({
+    name: '',
+    number: '',
+  });
 
-  // useEffect(
-  //   (values, { resetForm }) => {
-  //     setName(values.name);
-  //     setNumber(values.number);
-  //   },
-  //   [name, number]
-  // );
+  console.log(state.name);
+  console.log(state.number);
+  console.log(onSubmit);
 
   const handleSubmit = (values, { resetForm }) => {
     console.log(values);
     resetForm();
     onSubmit(values.name, values.number);
-    setName(values.name);
-    setNumber(values.number);
   };
 
   return (
     <Formik
-      initialValues={(name, number)}
+      initialValues={state}
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
