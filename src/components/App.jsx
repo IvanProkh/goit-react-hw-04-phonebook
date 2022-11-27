@@ -15,6 +15,8 @@ const App = () => {
   const [filter, setFilter] = useState('');
 
   const addContact = (name, number) => {
+    console.log(name, number);
+
     if (
       contacts.find(
         contact =>
@@ -25,14 +27,35 @@ const App = () => {
       return alert(`${name} / ${number} is already in contacts!`);
     }
     {
-      const contact = {
+      const newContact = {
+        id: nanoid(),
         name,
         number,
-        id: nanoid(),
       };
 
-      setContacts({ contacts: [contact, ...contacts] });
+      setContacts(prevState => [newContact, ...prevState]);
     }
+    console.log(contacts);
+  };
+
+  const deleteContact = contactId => {
+    setContacts(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
+  const currentContacts = () => {
+    return contacts.filter(contact => {
+      return (
+        contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+        contact.number.toLowerCase().includes(filter.toLowerCase())
+      );
+    });
+  };
+
+  const handleChangeFilter = e => {
+    console.log(e.currentTarget.value);
+    setFilter(e.currentTarget.value);
   };
 
   return (
@@ -41,12 +64,13 @@ const App = () => {
       <ContactForm onSubmit={addContact} />
 
       <h2>Contacts</h2>
-      {/* <Filter filter={filter} onChange={handleChangeFilter} /> */}
-      {/* <ContactList items={currentContacts()} deleteContact={deleteContact} /> */}
+      <Filter filter={filter} onChange={handleChangeFilter} />
+      <ContactList items={currentContacts()} deleteContact={deleteContact} />
     </Wrapper>
   );
 };
-
+//
+//* перенес
 // class App extends Component {
 //   state = {
 //     contacts: [
@@ -74,6 +98,7 @@ const App = () => {
 //     }
 //   }
 
+//* перенес
 //   addContact = (name, number) => {
 //     if (
 //       this.state.contacts.find(
@@ -96,12 +121,13 @@ const App = () => {
 //     }
 //   };
 
+//* перенес
 //   deleteContact = contactId => {
 //     this.setState(prevState => ({
 //       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
 //     }));
 //   };
-
+//* перенес
 //   currentContacts = () => {
 //     const { filter, contacts } = this.state;
 //     return contacts.filter(contact => {
@@ -111,7 +137,7 @@ const App = () => {
 //       );
 //     });
 //   };
-
+//* перенес
 //   handleChangeFilter = e => {
 //     console.log(e.currentTarget.value);
 //     this.setState({ filter: e.currentTarget.value });

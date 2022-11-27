@@ -22,10 +22,11 @@ const ContactForm = ({ onSubmit }) => {
 
   console.log(state.name);
   console.log(state.number);
-  console.log(onSubmit);
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
+    // console.log(values);
+    console.log(values.name);
+    console.log(values.number);
     resetForm();
     onSubmit(values.name, values.number);
   };
