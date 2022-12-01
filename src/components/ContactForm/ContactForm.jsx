@@ -20,11 +20,8 @@ const ContactForm = ({ onSubmit }) => {
     number: '',
   });
 
-  console.log(state.name);
-  console.log(state.number);
-
   const handleSubmit = (values, { resetForm }) => {
-    // console.log(values);
+
     console.log(values.name);
     console.log(values.number);
     resetForm();
