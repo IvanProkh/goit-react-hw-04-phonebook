@@ -28,20 +28,16 @@ const App = () => {
     }
     {
       const newContact = {
-        id: nanoid(),
+        id: nanoid(4),
         name,
         number,
       };
-
-      setContacts(prevState => [newContact, ...prevState]);
+      setContacts(state => [newContact, ...state]);
     }
-    console.log(contacts);
   };
 
   const deleteContact = contactId => {
-    setContacts(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
+    setContacts(state => state.filter(contact => contact.id !== contactId));
   };
 
   const currentContacts = () => {
@@ -57,6 +53,14 @@ const App = () => {
     console.log(e.currentTarget.value);
     setFilter(e.currentTarget.value);
   };
+
+  // useEffect(() => {
+  //   first
+
+  //   return () => {
+  //     second
+  //   }
+  // }, [third])
 
   return (
     <Wrapper>
