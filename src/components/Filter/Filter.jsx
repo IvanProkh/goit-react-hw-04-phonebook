@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { Form } from './Filter.styled';
 
-const Filter = ({ filter, onChange }) => {
+export const Filter = ({ filter, onChange }) => {
   return (
     <Form>
       <p>Filter name:</p>
@@ -11,7 +11,7 @@ const Filter = ({ filter, onChange }) => {
   );
 };
 
-export default Filter;
+// export default Filter;
 
 Filter.propTypes = {
   filter: PropTypes.string.isRequired,

@@ -14,14 +14,13 @@ let schema = yup.object().shape({
 const nameId = nanoid();
 const contactId = nanoid();
 
-const ContactForm = ({ onSubmit }) => {
+export const ContactForm = ({ onSubmit }) => {
   const [state] = useState({
     name: '',
     number: '',
   });
 
   const handleSubmit = (values, { resetForm }) => {
-
     console.log(values.name);
     console.log(values.number);
     resetForm();
@@ -63,6 +62,16 @@ const ContactForm = ({ onSubmit }) => {
       </FormContact>
     </Formik>
   );
+};
+
+ContactForm.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 // class ContactForm extends Component {
@@ -116,14 +125,4 @@ const ContactForm = ({ onSubmit }) => {
 //   }
 // }
 
-ContactForm.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.exact({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-};
-
-export default ContactForm;
+// export default ContactForm;
