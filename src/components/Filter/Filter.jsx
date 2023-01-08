@@ -2,18 +2,20 @@ import PropTypes from 'prop-types';
 
 import { Form } from './Filter.styled';
 
-export const Filter = ({ filter, onChange }) => {
+export const Filter = ({ filter, initialiseFilter }) => {
   return (
     <Form>
-      <p>Filter name:</p>
-      <input type="text" value={filter} onChange={onChange} />
+      <p>Find contact:</p>
+      <input
+        type="text"
+        value={filter}
+        onChange={event => initialiseFilter(event.target.value)}
+      />
     </Form>
   );
 };
 
-// export default Filter;
-
 Filter.propTypes = {
   filter: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  initialiseFilter: PropTypes.func.isRequired,
 };

@@ -7,6 +7,7 @@ export const FormContact = styled(Form)`
 `;
 
 export const Label = styled.label`
+  display: flex;
   font-size: 24px;
 
   :last-child {
@@ -26,6 +27,8 @@ export const Error = styled(ErrorMessage)`
   color: red;
   text-align: center;
   font-weight: bold;
+
+  max-width: 255px;
 
   margin: 3px 0;
   height: 25px;

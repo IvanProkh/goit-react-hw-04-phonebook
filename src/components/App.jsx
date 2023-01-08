@@ -37,7 +37,7 @@ export const App = () => {
         name,
         number,
       };
-      setContacts(state => [newContact, ...state]);
+      setContacts(prevState => [newContact, ...prevState]);
     }
   };
 
@@ -55,18 +55,13 @@ export const App = () => {
     });
   };
 
-  const handleChangeFilter = e => {
-    console.log(e.currentTarget.value);
-    setFilter(e.currentTarget.value);
-  };
-
   return (
     <Wrapper>
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addContact} />
 
       <h2>Contacts</h2>
-      <Filter filter={filter} onChange={handleChangeFilter} />
+      <Filter filter={filter} initialiseFilter={setFilter} />
       <ContactList items={currentContacts()} deleteContact={deleteContact} />
     </Wrapper>
   );
