@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useMemo } from 'react';
 import { Contact } from './ContactList.styled';
 
 export const ContactList = ({ contacts, filter, setContacts }) => {
@@ -7,18 +8,31 @@ export const ContactList = ({ contacts, filter, setContacts }) => {
     console.log(contacts);
   };
 
-  const currentContacts = () => {
+  // const currentContacts = () => {
+  //   return contacts.filter(contact => {
+  //     console.log('filter');
+  //     return (
+  //       contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+  //       contact.number.toLowerCase().includes(filter.toLowerCase())
+  //     );
+  //   });
+  // };
+
+  // useMemo(() => first, [second])
+
+  const currentContacts = useMemo(() => {
+    console.log('filter');
     return contacts.filter(contact => {
       return (
         contact.name.toLowerCase().includes(filter.toLowerCase()) ||
         contact.number.toLowerCase().includes(filter.toLowerCase())
       );
     });
-  };
+  }, [contacts, filter]);
 
   return (
     <Contact>
-      {currentContacts().map(({ name, number, id }) => (
+      {currentContacts.map(({ name, number, id }) => (
         <li key={id}>
           <span>{name} :</span>
           <span>{number}</span>
