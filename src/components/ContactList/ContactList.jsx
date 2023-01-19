@@ -32,6 +32,7 @@ export const ContactList = ({ contacts, filter, setContacts }) => {
 };
 
 ContactList.propTypes = {
-  // items: PropTypes.array.isRequired,
-  // setContacts: PropTypes.func.isRequired,
+  contacts: PropTypes.array.isRequired,
+  filter: PropTypes.string.isRequired,
+  setContacts: PropTypes.func.isRequired,
 };
