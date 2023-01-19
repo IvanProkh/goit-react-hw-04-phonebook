@@ -41,19 +41,19 @@ export const App = () => {
     }
   };
 
-  const deleteContact = contactId => {
-    setContacts(state => state.filter(contact => contact.id !== contactId));
-    console.log(contacts);
-  };
+  // const deleteContact = contactId => {
+  //   setContacts(state => state.filter(contact => contact.id !== contactId));
+  //   console.log(contacts);
+  // };
 
-  const currentContacts = () => {
-    return contacts.filter(contact => {
-      return (
-        contact.name.toLowerCase().includes(filter.toLowerCase()) ||
-        contact.number.toLowerCase().includes(filter.toLowerCase())
-      );
-    });
-  };
+  // const currentContacts = () => {
+  //   return contacts.filter(contact => {
+  //     return (
+  //       contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+  //       contact.number.toLowerCase().includes(filter.toLowerCase())
+  //     );
+  //   });
+  // };
 
   return (
     <Wrapper>
@@ -62,7 +62,11 @@ export const App = () => {
 
       <h2>Contacts</h2>
       <Filter filter={filter} initialiseFilter={setFilter} />
-      <ContactList items={currentContacts()} deleteContact={deleteContact} />
+      <ContactList
+        contacts={contacts}
+        filter={filter}
+        setContacts={setContacts}
+      />
     </Wrapper>
   );
 };

@@ -1,10 +1,24 @@
 import PropTypes from 'prop-types';
 import { Contact } from './ContactList.styled';
 
-export const ContactList = ({ items, deleteContact }) => {
+export const ContactList = ({ contacts, filter, setContacts }) => {
+  const deleteContact = contactId => {
+    setContacts(state => state.filter(contact => contact.id !== contactId));
+    console.log(contacts);
+  };
+
+  const currentContacts = () => {
+    return contacts.filter(contact => {
+      return (
+        contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+        contact.number.toLowerCase().includes(filter.toLowerCase())
+      );
+    });
+  };
+
   return (
     <Contact>
-      {items.map(({ name, number, id }) => (
+      {currentContacts().map(({ name, number, id }) => (
         <li key={id}>
           <span>{name} :</span>
           <span>{number}</span>
@@ -18,6 +32,6 @@ export const ContactList = ({ items, deleteContact }) => {
 };
 
 ContactList.propTypes = {
-  items: PropTypes.array.isRequired,
-  deleteContact: PropTypes.func.isRequired,
+  // items: PropTypes.array.isRequired,
+  // setContacts: PropTypes.func.isRequired,
 };

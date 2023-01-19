@@ -18,7 +18,7 @@ export const ContactForm = ({ onSubmit }) => {
   // const [name, setName] = useState('');
   // const [number, setNumber] = useState('');
 
-  const [state] = useState({
+  const [state, setState] = useState({
     name: '',
     number: '',
   });
